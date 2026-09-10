@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { CustomInput } from '../components/CustomInput';
+import { setEmail } from '../store/slices/userSlice';
+import { useAppDispatch } from '../store/store';
 
 type HomeScreenProps = {
-  onValidEmail: (email: string) => void;
   navigation?: any;
 };
 
-export function HomeScreen({ onValidEmail, navigation }: HomeScreenProps) {
-  const [email, setEmail] = useState('');
+export function HomeScreen({ navigation }: HomeScreenProps = {}) {
+  const dispatch = useAppDispatch();
+  const [email, setEmailInput] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [notifications, setNotifications] = useState<any[]>([]);
@@ -52,7 +54,8 @@ export function HomeScreen({ onValidEmail, navigation }: HomeScreenProps) {
 
     if (isValid) {
       const validEmail = email.trim();
-      onValidEmail(validEmail);
+      dispatch(setEmail(validEmail));
+      console.log('[Redux] Usuario actualizado:', validEmail);
       setNotifications([
         { title: 'Desarrollo móvil', message: 'Nueva tarea: práctica de navegación en React Native.', time: 'Hace 10 min' },
         { title: 'Bases de datos', message: 'Tu grupo subió un resumen de SQL avanzado.', time: 'Hace 1 hora' },
@@ -78,7 +81,7 @@ export function HomeScreen({ onValidEmail, navigation }: HomeScreenProps) {
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={setEmailInput}
             error={emailError}
           />
 
