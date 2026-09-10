@@ -14,7 +14,7 @@ export function InventoryScreen() {
   const [price, setPrice] = useState('');
 
   useEffect(() => {
-    console.log('[Redux] Estado del inventario:', products);
+    console.log('[Redux] Estado de materiales:', products);
   }, [products]);
 
   const handleAddProduct = () => {
@@ -40,24 +40,24 @@ export function InventoryScreen() {
 
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Inventario</Text>
-      <Text style={styles.subtitle}>Agrega productos y consúltalos desde cualquier pantalla.</Text>
+      <Text style={styles.title}>Materiales de estudio</Text>
+      <Text style={styles.subtitle}>Comparte apuntes y recursos académicos con tus grupos.</Text>
 
-      <CustomInput label="Nombre del producto" placeholder="Ej. Cuaderno" value={name} onChangeText={setName} />
-      <CustomInput label="Cantidad" placeholder="Ej. 10" keyboardType="numeric" value={quantity} onChangeText={setQuantity} />
-      <CustomInput label="Precio" placeholder="Ej. 25.50" keyboardType="decimal-pad" value={price} onChangeText={setPrice} />
-      <CustomButton title="Agregar producto" onPress={handleAddProduct} />
+      <CustomInput label="Nombre del material" placeholder="Ej. Resumen de navegación" value={name} onChangeText={setName} />
+      <CustomInput label="Número de archivos" placeholder="Ej. 2" keyboardType="numeric" value={quantity} onChangeText={setQuantity} />
+      <CustomInput label="Referencia o valor" placeholder="Ej. 25.50" keyboardType="decimal-pad" value={price} onChangeText={setPrice} />
+      <CustomButton title="Compartir material" onPress={handleAddProduct} />
 
-      <Text style={styles.sectionTitle}>Productos almacenados: {products.length}</Text>
+      <Text style={styles.sectionTitle}>Materiales compartidos: {products.length}</Text>
       {products.length === 0 ? (
-        <Text style={styles.empty}>Todavía no hay productos en Redux.</Text>
+        <Text style={styles.empty}>Todavía no hay materiales compartidos.</Text>
       ) : (
         products.map((product) => (
           <View key={product.id} style={styles.productCard}>
             <View>
               <Text style={styles.productName}>{product.name}</Text>
               <Text style={styles.productDetails}>
-                Cantidad: {product.quantity} · Precio: ${product.price.toFixed(2)}
+                Archivos: {product.quantity} · Referencia: {product.price.toFixed(2)}
               </Text>
             </View>
             <CustomButton title="Eliminar" variant="secondary" onPress={() => dispatch(removeProduct(product.id))} />

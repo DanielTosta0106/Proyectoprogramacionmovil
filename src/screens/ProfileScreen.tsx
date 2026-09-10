@@ -15,11 +15,11 @@ export function ProfileScreen() {
       </View>
 
       <Text style={styles.body}>Estudiante de Ingeniería · 2 grupos activos</Text>
-      <Text style={styles.inventoryTitle}>Productos en inventario: {products.length}</Text>
+      <Text style={styles.inventoryTitle}>Materiales compartidos: {products.length}</Text>
       {products.map((product) => (
         <View key={product.id} style={styles.productRow}>
           <Text style={styles.productName}>{product.name}</Text>
-          <Text style={styles.productDetails}>Cantidad: {product.quantity} · ${product.price.toFixed(2)}</Text>
+          <Text style={styles.productDetails}>Archivos: {product.quantity} · Referencia: {product.price.toFixed(2)}</Text>
         </View>
       ))}
     </ScreenContainer>
