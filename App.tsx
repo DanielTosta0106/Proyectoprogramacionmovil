@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { LoginScreen } from './src/screens/LoginScreen';
+import { RegisterScreen } from './src/screens/RegisterScreen';
 import { GroupsScreen } from './src/screens/GroupsScreen';
 import { GroupDetailsScreen } from './src/screens/GroupDetailsScreen';
 import { InventoryScreen } from './src/screens/InventoryScreen';
@@ -45,6 +46,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'Crear cuenta' }} />
           <Stack.Screen name="MainTabs" options={{ headerShown: false }}>
             {() => <MainTabs />}
           </Stack.Screen>

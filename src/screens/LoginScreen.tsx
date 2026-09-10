@@ -59,6 +59,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
         error={passwordError}
       />
       <CustomButton title="Iniciar sesión" onPress={handleLogin} />
+      <CustomButton title="Crear una cuenta" variant="secondary" onPress={() => navigation.navigate('Register')} />
     </ScreenContainer>
   );
 }
